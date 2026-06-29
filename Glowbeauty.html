@@ -1,1 +1,407 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Beauty | Skincare Shop</title>
+    <style>
+        /* --- ESTILOS GENERALES Y PALETA DE COLORES --- */
+        :root {
+            --color-primario: #fcdfd2; /* Tono melocotón claro de la marca */
+            --color-oscuro: #2c2523;
+            --color-crema: #faf6f0;
+            --color-blanco: #ffffff;
+            --color-gris: #8e8380;
+            --fuente-titulos: 'Playfair Display', Georgia, serif;
+            --fuente-texto: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fuente-texto);
+            background-color: var(--color-crema);
+            color: var(--color-oscuro);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: var(--fuente-titulos);
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: lowercase;
+        }
+
+        .logo span {
+            color: #e0997e;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul a {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav ul a:hover {
+            color: #e0997e;
+        }
+
+        .iconos-nav {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* --- SECCIÓN HERO (BIENVENIDA) --- */
+        .hero {
+            display: flex;
+            height: calc(85vh - 79px);
+            background-color: var(--color-primario);
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-texto {
+            flex: 1;
+            padding: 0 8%;
+        }
+
+        .hero-texto h1 {
+            font-family: var(--fuente-titulos);
+            font-size: 52px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-texto p {
+            font-size: 16px;
+            color: var(--color-gris);
+            margin-bottom: 30px;
+            max-width: 450px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--color-oscuro);
+            color: var(--color-blanco);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #524541;
+            transform: translateY(-2px);
+        }
+
+        .hero-imagen {
+            flex: 1;
+            height: 100%;
+        }
+
+        .hero-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- PRODUCTO ESTRELLA --- */
+        .producto-estrella {
+            padding: 80px 10%;
+            background-color: var(--color-blanco);
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .estrella-img {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .estrella-img img {
+            width: 100%;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .estrella-info {
+            flex: 1;
+        }
+
+        .tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #e0997e;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .estrella-info h2 {
+            font-family: var(--fuente-titulos);
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .precio {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--color-oscuro);
+        }
+
+        /* --- CATÁLOGO DE PRODUCTOS --- */
+        .productos-seccion {
+            padding: 80px 5%;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            font-family: var(--fuente-titulos);
+            font-size: 36px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .tarjeta-producto {
+            background-color: var(--color-blanco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+
+        .tarjeta-producto:hover {
+            transform: translateY(-5px);
+        }
+
+        .producto-img-contenedor {
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .producto-img-contenedor img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .producto-detalles {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .producto-detalles h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* --- GALERÍA DE EXPERIENCIA/TEXTURAS --- */
+        .galeria-texturas {
+            padding: 60px 5%;
+            background-color: rgba(252, 223, 210, 0.3);
+        }
+
+        .grid-texturas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .grid-texturas img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-oscuro);
+            color: var(--color-blanco);
+            padding: 50px 5% 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primario);
+        }
+
+        .copyright {
+            color: rgba(255,255,255,0.4);
+            font-size: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">glow <span>beauty</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Rutinas</a></li>
+                <li><a href="#">Nosotros</a></li>
+            </ul>
+        </nav>
+        <div class="iconos-nav">
+            <span>🔍</span>
+            <span>🛒 (0)</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-texto">
+            <h1>Tu piel merece brillar desde el interior</h1>
+            <p>Fórmulas botánicas y limpias diseñadas para potenciar tu luminosidad natural y darte una hidratación profunda de larga duración.</p>
+            <button class="btn">Explorar Colección</button>
+        </div>
+        <div class="hero-imagen">
+            <img src="blob:https://web.whatsapp.com/ed0ad284-e1bf-4ff1-957e-d9048e333492" alt="Piel radiante Glow Beauty">
+        </div>
+    </section>
+
+    <section class="producto-estrella">
+        <div class="estrella-img">
+            <img src="blob:https://web.whatsapp.com/937df2d9-8915-44a9-b39a-1449cdde8f7a" alt="Glow Beauty Serum" style="grid-column: span 2; height: 400px;">
+            <img src="blob:https://web.whatsapp.com/e878362f-2842-4607-9002-308b8ca730dd" alt="Aplicación de suero">
+            <img src="blob:https://web.whatsapp.com/f9af9b1b-3b2c-440e-abd2-faa91451f173" alt="Textura de suero">
+        </div>
+        <div class="estrella-info">
+            <span class="tag">Más Vendido</span>
+            <h2>Serum Hidratación y Luminosidad</h2>
+            <p style="color: var(--color-gris); margin-bottom: 20px;">Nuestra joya de la corona de la *New Collection*. Un elixir concentrado de 100ml diseñado para revitalizar las pieles opacas, reteniendo la humedad celular y aportando un acabado sedoso y destellante al instante.</p>
+            <div class="precio">$34.00 USD</div>
+            <button class="btn">Añadir al Carrito</button>
+        </div>
+    </section>
+
+    <section class="productos-seccion">
+        <h2 class="titulo-seccion">Completa tu Rutina</h2>
+        
+        <div class="grid-productos">
+            <div class="tarjeta-producto">
+                <div class="producto-img-contenedor">
+                    <img src="blob:https://web.whatsapp.com/aa96fe20-9a55-4d68-ac2e-60f455bec99b" alt="Espuma Limpiadora">
+                </div>
+                <div class="producto-detalles">
+                    <h3>Limpiador Facial en Espuma</h3>
+                    <div class="precio" style="font-size: 16px; margin-bottom: 10px;">$22.00 USD</div>
+                    <button class="btn" style="padding: 8px 15px; font-size: 10px;">Comprar</button>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto">
+                <div class="producto-img-contenedor">
+                    <img src="imagen5.png" alt="Mascarilla de Tela">
+                </div>
+                <div class="producto-detalles">
+                    <h3>Mascarilla Ultra-Hidratante</h3>
+                    <div class="precio" style="font-size: 16px; margin-bottom: 10px;">$6.00 USD</div>
+                    <button class="btn" style="padding: 8px 15px; font-size: 10px;">Comprar</button>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto">
+                <div class="producto-img-contenedor">
+                    <img src="blob:https://web.whatsapp.com/7646e393-32b1-4a7a-a453-47e6bd0eed51" alt="Goteros Concentrados">
+                </div>
+                <div class="producto-detalles">
+                    <h3>Set de Ampollas Vitamínicas</h3>
+                    <div class="precio" style="font-size: 16px; margin-bottom: 10px;">$45.00 USD</div>
+                    <button class="btn" style="padding: 8px 15px; font-size: 10px;">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="galeria-texturas">
+        <h2 class="titulo-seccion" style="font-size: 26px; margin-bottom: 30px;">La Experiencia Glow</h2>
+        <div class="grid-texturas">
+            <img src="blob:https://web.whatsapp.com/7d6861b7-c38d-4045-aaff-307c7e48c3b2" alt="Textura en el dedo">
+            <img src="blob:https://web.whatsapp.com/1657a348-7b80-4c2b-a044-b93bad71fabf" alt="Piel hidratada primer plano">
+            <img src="blob:https://web.whatsapp.com/712ef5c7-51ce-400c-983c-b4b9da6728c6" alt="Aplicación precisa">
+            <img src="blob:https://web.whatsapp.com/f9af9b1b-3b2c-440e-abd2-faa91451f173" alt="Fluido de suero">
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="color: white; margin-bottom: 20px;">glow <span>beauty</span></div>
+        <div class="footer-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Políticas de Envío</a>
+            <a href="#">Contacto</a>
+            <a href="#">Sustentabilidad</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Glow Beauty. Todos los derechos reservados. Creado con amor para una piel radiante.
+        </div>
+    </footer>
+
+</body>
+</html>
