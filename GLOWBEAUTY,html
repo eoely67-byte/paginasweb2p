@@ -382,10 +382,10 @@
     <section class="galeria-texturas">
         <h2 class="titulo-seccion" style="font-size: 26px; margin-bottom: 30px;">La Experiencia Glow</h2>
         <div class="grid-texturas">
-            <img src="imagen7.png" alt="Textura en el dedo">
-            <img src="imagen6.png" alt="Piel hidratada primer plano">
-            <img src="imagen10.png" alt="Aplicación precisa">
-            <img src="imagen1.png" alt="Fluido de suero">
+           <img src="imagen7.png" alt="Textura en el dedo">
+           <img src="imagen6.png" alt="Piel hidratada primer plano">
+           <img src="imagen10.png" alt="Aplicación precisa">
+           <img src="imagen1.png" alt="Fluido de suero">
         </div>
     </section>
 
